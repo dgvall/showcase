@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   
   # resources :tags
-  # resources :artworks
-  # resources :users
+  resources :artworks, only: [:create]
+  # resources :users, only: [:show]
 
   post "/signup", to: "users#create"
-  get "/me", to: "users#show"
+  get "/me", to: "users#profile"
+  get '/users/:username', to: 'users#show'
+
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
