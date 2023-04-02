@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import "./SignUp.css"
 function SignUp({setUser}) {
   const [username, setUsername] = useState("")
@@ -6,6 +7,7 @@ function SignUp({setUser}) {
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
   const [imageUrl, setImageUrl] = useState("")
 
+  const history = useHistory()
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -25,7 +27,10 @@ function SignUp({setUser}) {
       body: JSON.stringify(userData)
     })
       .then(res => res.json())
-      .then(user => setUser(user))
+      .then(user => {
+        setUser(user)
+        history.push("/")
+      })
   }
 
   return (
