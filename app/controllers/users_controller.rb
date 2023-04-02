@@ -17,6 +17,7 @@ class UsersController < ApplicationController
       render json: user, status: :ok
     else
       render json: { errors: ["User does not exist"]}, status: :not_found
+    end
   end
 
   private
@@ -24,3 +25,5 @@ class UsersController < ApplicationController
   def user_params
     params.permit(:username, :password, :password_confirmation, :image_url)
   end
+
+end
