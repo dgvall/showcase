@@ -1,0 +1,18 @@
+.form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form-header {
+  display: flex;
+  justify-content: center;
+}
+
+.form-input {
+  margin-top: 1vh;
+}
+
+.form-button {
+  margin-top: 1vh;
+}
