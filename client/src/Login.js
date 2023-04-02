@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Login() {
+function Login({setUser}) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
@@ -20,7 +20,7 @@ function Login() {
       body: JSON.stringify(userData)
     })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(user => setUser(user))
   }
 
   return (
@@ -41,7 +41,7 @@ function Login() {
         placeholder = "Password"
       />
 
-      <button className = "form-button">Create Account</button>
+      <button className = "form-button">Log In</button>
     </form>
   </div>
   )

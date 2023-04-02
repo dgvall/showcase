@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import "./SignUp.css"
-function SignUp() {
+function SignUp({setUser}) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
@@ -25,7 +25,7 @@ function SignUp() {
       body: JSON.stringify(userData)
     })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(user => setUser(user))
   }
 
   return (

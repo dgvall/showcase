@@ -34,15 +34,15 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user = {user} handleLogout = {onLogout}/>
+      <NavBar user = {user} handleLogout = {onLogout} />
       
       <Switch>
         <Route exact path = "/login">
-          <Login />
+          <Login setUser = {setUser}/>
         </Route>
 
         <Route exact path = "/signup">
-          <SignUp />
+          <SignUp setUser = {setUser}/>
         </Route>
       </Switch>
     </div>
