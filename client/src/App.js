@@ -19,6 +19,8 @@ function App() {
     })
   }, [])
 
+  console.log(user)
+
   function onLogout() {
     fetch("/logout", {
       method: "DELETE"
