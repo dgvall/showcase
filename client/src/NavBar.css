@@ -1,0 +1,15 @@
+#navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#account-setup {
+  display: flex;
+}
+
+.navbar-header {
+  display: flex;
+  margin-right: 1em;
+  margin-left: 1em;
+}
