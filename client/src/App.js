@@ -9,12 +9,23 @@ import Login from "./Login"
 import SignUp from "./SignUp"
 
 function App() {
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user))
+      }
+    })
+  }, [])
+
+  console.log(user)
+
   return (
     <div className="App">
-      <NavBar />
+      <NavBar user = {user} />
       
       <Switch>
-
         <Route exact path = "/login">
           <Login />
         </Route>
@@ -22,7 +33,6 @@ function App() {
         <Route exact path = "/signup">
           <SignUp />
         </Route>
-
       </Switch>
     </div>
   );

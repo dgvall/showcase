@@ -3,25 +3,46 @@ import { NavLink } from "react-router-dom"
 
 import "./NavBar.css"
 
-function NavBar() {
+function NavBar({user}) {
   return (
     <div id = "navbar">
       
       <NavLink
         exact to = "/"
       >Showcase</NavLink>
-      
-      <div id = "account-setup">
-        <NavLink
-          exact to = "/login"
-          className = "navbar-header"
-        >Login</NavLink>
+      {
+        user
+        ? 
+        <div className = "navbar-logged">
 
-        <NavLink
-          exact to = "/signup"
-          className= "navbar-header"
-        >Signup</NavLink>
-      </div>
+          <NavLink
+            exact to = "/account"
+            className = "navbar-header"
+          >Account</NavLink>
+
+          <NavLink
+            exact to = "/logout"
+            className = "navbar-header"
+          >Logout</NavLink>
+
+          <NavLink
+            exact to = "/upload"
+            className = "navbar-header"
+          >Upload</NavLink>
+        </div>
+        :
+        <div className = "navbar-logged">
+          <NavLink
+            exact to = "/login"
+            className = "navbar-header"
+          >Login</NavLink>
+
+          <NavLink
+            exact to = "/signup"
+            className= "navbar-header"
+          >Signup</NavLink>
+        </div>
+      }
     </div>
   )
 }
