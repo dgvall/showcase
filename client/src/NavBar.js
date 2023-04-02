@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 
 import "./NavBar.css"
 
-function NavBar({user}) {
+function NavBar({user, handleLogout}) {
   return (
     <div id = "navbar">
       
@@ -23,6 +23,7 @@ function NavBar({user}) {
           <NavLink
             exact to = "/logout"
             className = "navbar-header"
+            onClick = {handleLogout}
           >Logout</NavLink>
 
           <NavLink

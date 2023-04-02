@@ -19,11 +19,22 @@ function App() {
     })
   }, [])
 
+  function onLogout() {
+    fetch("/logout", {
+      method: "DELETE"
+    })
+    .then((r) => {
+      if (r.ok) {
+        setUser(null)
+      }
+    })
+  }
+
   console.log(user)
 
   return (
     <div className="App">
-      <NavBar user = {user} />
+      <NavBar user = {user} handleLogout = {onLogout}/>
       
       <Switch>
         <Route exact path = "/login">
