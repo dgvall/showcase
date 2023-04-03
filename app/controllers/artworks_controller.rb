@@ -2,6 +2,14 @@ class ArtworksController < ApplicationController
 
   def create
     artwork = @current_user.artworks.build(artwork_params)
+    params[:tags].each do |t|
+      tag = Tag.find_by(name: t)
+      if tag
+        artwork.tags << tag
+      else
+        artwork.tags.build(name: t)
+      end
+    end
 
     if artwork.save
       render json: artwork, status: :created
@@ -13,7 +21,7 @@ class ArtworksController < ApplicationController
   private
 
   def artwork_params
-    params.permit(:title, :image_url, :tags_attributes)
+    params.require(:artwork).permit(:title, :image_url, :tags)
   end
 
 

@@ -7,8 +7,6 @@ class Artwork < ApplicationRecord
   has_many :artwork_tags, dependent: :destroy
   has_many :tags, through: :artwork_tags
 
-  accepts_nested_attributes_for :tags, reject_if: :all_blank
-
   validates :title, presence: true
   validates :image_url, presence: true
 end

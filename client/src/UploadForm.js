@@ -14,8 +14,8 @@ function UploadForm() {
 
     const artworkData = {
       title,
+      tags,
       image_url: imageUrl,
-      tags_attributes: tags
     }
 
     fetch('/artworks', {

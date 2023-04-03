@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
-  # resources :tags
+  resources :tags, only: [:index]
+  # resources :artwork_tags, only [:index]
   resources :artworks, only: [:create]
   # resources :users, only: [:show]
 
