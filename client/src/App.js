@@ -7,6 +7,7 @@ import './App.css';
 import NavBar from "./NavBar"
 import Login from "./Login"
 import SignUp from "./SignUp"
+import UploadForm from "./UploadForm"
 
 function App() {
   const [user, setUser] = useState(null)
@@ -45,6 +46,10 @@ function App() {
 
         <Route exact path = "/signup">
           <SignUp setUser = {setUser}/>
+        </Route>
+
+        <Route exact path = "/upload">
+          <UploadForm />
         </Route>
       </Switch>
     </div>
