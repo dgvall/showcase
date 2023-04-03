@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-    render json: @current_user
+    render json: @current_user, include: ['artworks', 'artworks.tags']
   end
 
   def show
