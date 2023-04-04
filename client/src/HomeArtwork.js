@@ -10,7 +10,7 @@ function HomeArtwork({id, image_url, tags, user_likes, title, user}) {
       onMouseEnter = {() => setHovered(true)}
       onMouseLeave = {() => setHovered(false)}
     >
-      <img src = {image_url}/>
+      <img alt = {title} src = {image_url}/>
       {
         hovered &&
           <div className = "hover-details">

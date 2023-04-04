@@ -8,7 +8,7 @@ function NavBar({user, handleLogout}) {
     <div id = "navbar">
       
       <NavLink
-        exact to = "/"
+        exact to = "/artworks"
       >Showcase</NavLink>
       {
         user

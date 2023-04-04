@@ -25,7 +25,7 @@ function Login({setUser}) {
       .then((r) => {
         if (r.ok) {
           r.json().then((user) => setUser(user))
-          history.push("/")
+          history.push("/artworks")
         }
         else {
           // append errors to error state which DOM shows
