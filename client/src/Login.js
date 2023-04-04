@@ -22,10 +22,14 @@ function Login({setUser}) {
       },
       body: JSON.stringify(userData)
     })
-      .then(res => res.json())
-      .then(user => {
-        setUser(user)
-        history.push("/")
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((user) => setUser(user))
+          history.push("/")
+        }
+        else {
+          // append errors to error state which DOM shows
+        }
       })
   }
 
