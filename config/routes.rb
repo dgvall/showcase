@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   resources :tags, only: [:index]
   # resources :artwork_tags, only [:index]
-  resources :artworks, only: [:create]
+  resources :artworks, only: [:create, :index]
   # resources :users, only: [:show]
 
   post "/signup", to: "users#create"

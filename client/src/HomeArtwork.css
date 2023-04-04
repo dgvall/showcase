@@ -1,0 +1,38 @@
+.home-art-container {
+  position: relative;
+  height: 25vh;
+  margin: .2em;
+}
+
+.home-art-container img {
+  height: 25vh;
+  padding: none;
+}
+
+.hover-details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  z-index: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  background: none;
+}
+
+.hover-details div {
+  background: none;
+}
+
+.hover-details  p {
+  font-size: 1rem;
+  background: none;
+}
+
+.hover-details h3 {
+  font-size: 1.2rem;
+  background: none;
+}

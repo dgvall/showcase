@@ -8,9 +8,11 @@ import NavBar from "./NavBar"
 import Login from "./Login"
 import SignUp from "./SignUp"
 import UploadForm from "./UploadForm"
+import Home from "./Home";
 
 function App() {
   const [user, setUser] = useState(null)
+  const [homeArtworks, setHomeArtworks] = useState([])
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -18,9 +20,11 @@ function App() {
         r.json().then((user) => setUser(user))
       }
     })
-  }, [])
 
-  console.log(user)
+    fetch("/artworks")
+    .then((r) => r.json())
+    .then((art) => setHomeArtworks(art))
+  }, [])
 
   function onLogout() {
     fetch("/logout", {
@@ -33,13 +37,15 @@ function App() {
     })
   }
 
-  console.log(user)
-
   return (
     <div className="App">
       <NavBar user = {user} handleLogout = {onLogout} />
       
       <Switch>
+        <Route path = "/">
+          <Home art = {homeArtworks}/>
+        </Route>
+
         <Route exact path = "/login">
           <Login setUser = {setUser}/>
         </Route>

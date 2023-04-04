@@ -1,0 +1,4 @@
+#home-art-container {
+  display: flex;
+  flex-direction: row;
+}

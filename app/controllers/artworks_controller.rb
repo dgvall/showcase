@@ -1,4 +1,5 @@
 class ArtworksController < ApplicationController
+  skip_before_action :authorize, only: [:index]
 
   def create
     artwork = @current_user.artworks.build(artwork_params)
@@ -16,6 +17,11 @@ class ArtworksController < ApplicationController
     else
       render json: { errors: artwork.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def index
+    artworks = Artwork.all
+    render json: artworks, status: :ok
   end
 
   private
