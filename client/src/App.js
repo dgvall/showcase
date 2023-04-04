@@ -42,7 +42,7 @@ function App() {
       <NavBar user = {user} handleLogout = {onLogout} />
       
       <Switch>
-        <Route path = "/">
+        <Route exact path = "/">
           <Home art = {homeArtworks}/>
         </Route>
 

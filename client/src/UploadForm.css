@@ -1,0 +1,9 @@
+#upload-container {
+  margin-top: 20vh;
+  border: solid red 2px;
+}
+
+#button-container {
+  display: flex;
+  justify-content: center;
+}

@@ -46,8 +46,8 @@ function Login({setUser}) {
         value = {password}
         placeholder = "Password"
       />
-
       <button className = "form-button">Log In</button>
+      
     </form>
   </div>
   )

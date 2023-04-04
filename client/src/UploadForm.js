@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import {useHistory} from 'react-router-dom'
 
+import "./UploadForm.css"
+
 function UploadForm() {
   const [title, setTitle] = useState("")
   const [imageUrl, setImageUrl] = useState("")
@@ -41,7 +43,7 @@ function UploadForm() {
   }
 
   return (
-    <div>
+    <div id = "upload-container">
     <h2 className = "form-header">Upload Artwork</h2>
     <form className = "form" onSubmit = {handleSubmit}>
       <input
@@ -76,8 +78,10 @@ function UploadForm() {
         )
       })
     }
-
-    <button onClick = {handleSubmit} className = "form-button">Upload</button>
+    <div id = "button-container">
+      <button onClick = {handleSubmit} className = "form-button">Upload</button>
+    </div>
+    
   </div>
   )
 }
