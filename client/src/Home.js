@@ -3,6 +3,7 @@ import HomeArtwork from './HomeArtwork'
 import "./Home.css"
 
 function Home({art}) {
+  console.log(art)
   return (
     <div id = "home-art-container">
       {
@@ -15,6 +16,7 @@ function Home({art}) {
               tags = {a.tags}
               title = {a.title}
               user_likes = {a.user_likes}
+              user = {a.user}
             />
           )
         })

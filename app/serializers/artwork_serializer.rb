@@ -3,4 +3,5 @@ class ArtworkSerializer < ActiveModel::Serializer
 
   has_many :tags
   has_many :user_likes
+  belongs_to :user
 end
