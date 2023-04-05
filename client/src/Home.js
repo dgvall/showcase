@@ -1,5 +1,5 @@
 import React from 'react'
-import HomeArtwork from './HomeArtwork'
+import PreviewArtwork from './PreviewArtwork'
 import "./Home.css"
 
 function Home({art}) {
@@ -9,14 +9,14 @@ function Home({art}) {
       {
         art.map((a) => {
           return (
-            <HomeArtwork
+            <PreviewArtwork
               key = {a.id}
               id = {a.id}
               image_url = {a.image_url}
               tags = {a.tags}
               title = {a.title}
-              user_likes = {a.user_likes}
-              username = {a.user.username}
+              likes = {a.likes}
+              user = {a.user}
             />
           )
         })

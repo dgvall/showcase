@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
-import HomeArtwork from './HomeArtwork'
+import PreviewArtwork from './PreviewArtwork'
 
 import "./UserPage.css"
 
@@ -39,14 +39,19 @@ function UserPage({setSelectedUser, selectedUser}) {
                 selectedUser.artworks[0]
                 ?
                 selectedUser.artworks.map((a) => {
+                  const userObj = {
+                    id: selectedUser.id,
+                    username: selectedUser.username,
+                    image_url: selectedUser.image_url
+                  }
                   return (
-                    <HomeArtwork
+                    <PreviewArtwork
                       key = {a.id}
                       id = {a.id}
                       image_url = {a.image_url}
                       tags = {a.tags}
                       title = {a.title}
-                      username = {selectedUser.username}
+                      user = {userObj}
                       user_likes = {"0"}
                     />
                   )
@@ -61,14 +66,14 @@ function UserPage({setSelectedUser, selectedUser}) {
                   ?
                   selectedUser.liked_artworks.map((a) => {
                     return (
-                      <HomeArtwork
+                      <PreviewArtwork
                         key = {a.id}
                         id = {a.id}
                         image_url = {a.image_url}
                         tags = {a.tags}
                         title = {a.title}
-                        username = {selectedUser.username}
-                        user_likes = {"0"}
+                        user = {selectedUser}
+                        likes = {a.likes}
                       />
                     )
                   })

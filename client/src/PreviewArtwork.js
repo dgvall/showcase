@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import './HomeArtwork.css'
+import './PreviewArtwork.css'
 
-function HomeArtwork({id, image_url, tags, user_likes, title, username}) {
+function PreviewArtwork({id, image_url, tags, likes, title, user}) {
   const [hovered, setHovered] = useState(false)
   return (
     <div
@@ -15,13 +15,13 @@ function HomeArtwork({id, image_url, tags, user_likes, title, username}) {
           <div className = "hover-details">
             <div>
               <h3>{title}</h3>
-              <p>{username}</p> 
+              <p>{user.username}</p> 
             </div>
-            <p>⭐ {user_likes.length}</p>
+            <p>⭐ {likes}</p>
           </div>
       }
     </div>
   )
 }
 
-export default HomeArtwork
+export default PreviewArtwork
