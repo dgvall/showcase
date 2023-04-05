@@ -8,13 +8,13 @@ class UsersController < ApplicationController
   end
 
   def profile
-    render json: @current_user, include: ['artworks', 'artworks.tags']
+    render json: @current_user, include: ['artworks', 'liked_artworks', 'artworks.tags']
   end
 
   def show
     user = User.find_by(username: params[:username])
     if user
-      render json: user, status: :ok, include: ['artworks', 'artworks.tags']
+      render json: user, status: :ok, include: ['artworks', 'liked_artworks', 'artworks.tags']
     else
       render json: { errors: ["User does not exist"]}, status: :not_found
     end
