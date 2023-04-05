@@ -62,9 +62,10 @@ function UserPage({setSelectedUser, selectedUser}) {
             <h1>Liked</h1>
             <div className = "user-page-artwork">
               {   
-                  selectedUser.liked_artworks
+                  selectedUser.liked_artworks[0]
                   ?
                   selectedUser.liked_artworks.map((a) => {
+                    console.log(a)
                     return (
                       <PreviewArtwork
                         key = {a.id}
@@ -72,7 +73,7 @@ function UserPage({setSelectedUser, selectedUser}) {
                         image_url = {a.image_url}
                         tags = {a.tags}
                         title = {a.title}
-                        user = {selectedUser}
+                        user = {a.user}
                         likes = {a.likes}
                       />
                     )
