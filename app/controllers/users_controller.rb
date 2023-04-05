@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def show
     user = User.find_by(username: params[:username])
     if user
-      render json: user, status: :ok
+      render json: user, status: :ok, include: ['artworks', 'artworks.tags']
     else
       render json: { errors: ["User does not exist"]}, status: :not_found
     end

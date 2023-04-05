@@ -36,7 +36,7 @@ function UserPage({setSelectedUser, selectedUser}) {
             <h1>Gallery</h1>
             <div className = "user-page-artwork">
               {
-                selectedUser.artworks[0]
+                selectedUser.artworks
                 ?
                 selectedUser.artworks.map((a) => {
                   const userObj = {
@@ -52,7 +52,7 @@ function UserPage({setSelectedUser, selectedUser}) {
                       tags = {a.tags}
                       title = {a.title}
                       user = {userObj}
-                      user_likes = {"0"}
+                      likes = {a.likes}
                     />
                   )
                 })
@@ -62,7 +62,7 @@ function UserPage({setSelectedUser, selectedUser}) {
             <h1>Liked</h1>
             <div className = "user-page-artwork">
               {   
-                  selectedUser.liked_artworks[0]
+                  selectedUser.liked_artworks
                   ?
                   selectedUser.liked_artworks.map((a) => {
                     return (
