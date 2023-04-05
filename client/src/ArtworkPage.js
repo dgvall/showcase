@@ -51,7 +51,9 @@ function ArtworkPage() {
           alt = {selectedArtwork.title}
         />
         <h1>{selectedArtwork.title}</h1>
-        <p>{selectedUser.username}</p>
+        <p
+          onClick = {() => history.push(`/users/${username}`)}
+        >{selectedUser.username}</p>
         <p>{selectedArtwork.likes} Likes</p>
         <p>Tags:</p>
         <ul>
