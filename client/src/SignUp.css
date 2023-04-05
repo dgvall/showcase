@@ -17,9 +17,3 @@
 .form-button {
   margin-top: 1vh;
 }
-
-.button-container {
-  display: flex;
-  border: solid red 2px;
-  justify-content: center;
-}

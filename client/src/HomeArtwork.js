@@ -1,9 +1,8 @@
 import React, {useState} from 'react'
 import './HomeArtwork.css'
 
-function HomeArtwork({id, image_url, tags, user_likes, title, user}) {
+function HomeArtwork({id, image_url, tags, user_likes, title, username}) {
   const [hovered, setHovered] = useState(false)
-
   return (
     <div
       className = "home-art-container"
@@ -16,7 +15,7 @@ function HomeArtwork({id, image_url, tags, user_likes, title, user}) {
           <div className = "hover-details">
             <div>
               <h3>{title}</h3>
-              <p>{user.username}</p> 
+              <p>{username}</p> 
             </div>
             <p>⭐ {user_likes.length}</p>
           </div>

@@ -1,0 +1,31 @@
+.profile-info {
+  margin-top: 5vh;
+  margin-left: 5vh;
+  display: flex;
+  flex-direction: row;
+  height: 10vh;
+  width: 50vw;
+  border: solid red 5px;
+}
+
+.profile-info img {
+  height: 9vh;
+  width: 9vh;
+  border: solid black .2em;
+}
+
+.profile-info h1 {
+  display: flex;
+  align-items: center;
+  padding-left: 1vw;
+  font-size: 4rem;
+}
+
+#user-art-container {
+  border: solid red 2px;
+}
+
+.user-page-artwork {
+  display: flex;
+  flex-direction: row;
+}

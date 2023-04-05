@@ -16,7 +16,7 @@ function Home({art}) {
               tags = {a.tags}
               title = {a.title}
               user_likes = {a.user_likes}
-              user = {a.user}
+              username = {a.user.username}
             />
           )
         })
