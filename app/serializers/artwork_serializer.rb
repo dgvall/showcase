@@ -1,7 +1,10 @@
 class ArtworkSerializer < ActiveModel::Serializer
-  attributes :id, :image_url, :title
+  attributes :id, :image_url, :title, :likes
 
   has_many :tags
-  has_many :user_likes
   belongs_to :user
+
+  def likes
+    self.object.user_likes.length
+  end
 end

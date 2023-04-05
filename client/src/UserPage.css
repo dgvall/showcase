@@ -28,4 +28,5 @@
 .user-page-artwork {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }

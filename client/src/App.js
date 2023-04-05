@@ -18,6 +18,7 @@ function App() {
   const [selectedUser, setSelectedUser] = useState(null)
 
   console.log(selectedUser)
+  console.log(homeArtworks)
 
   useEffect(() => {
     fetch("/me").then((r) => {
