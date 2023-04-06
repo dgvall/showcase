@@ -17,9 +17,6 @@ function App() {
   const [homeArtworks, setHomeArtworks] = useState([])
   const [selectedUser, setSelectedUser] = useState(null)
 
-  console.log(selectedUser)
-  console.log(homeArtworks)
-
   useEffect(() => {
     fetch("/me").then((r) => {
       if (r.ok) {
@@ -49,7 +46,10 @@ function App() {
       
       <Switch>
         <Route exact path = "/artworks">
-          <Home art = {homeArtworks}/>
+          <Home
+          art = {homeArtworks}
+          currentUser = {user}
+          />
         </Route>
 
         <Route exact path = "/users/:username">

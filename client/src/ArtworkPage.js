@@ -87,6 +87,7 @@ function ArtworkPage() {
                       title = {a.title}
                       user = {userObj}
                       likes = {a.likes}
+                      // likedByUser = {true}
                     />
                   )
                 })

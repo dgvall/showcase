@@ -11,6 +11,12 @@ class UserLikesController < ApplicationController
     end
   end
 
+  def destroy
+    artwork = Artwork.find(params[:id])
+    like = artwork.user_likes.find_by(user_id: @current_user.id)
+    like.destroy
+  end
+
   private
 
   def user_likes_params
