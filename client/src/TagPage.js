@@ -1,46 +1,31 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
-import PreviewArtwork from './PreviewArtwork'
+import RowsOfArtwork from './RowsOfArtwork'
 
 function TagPage() {
   const {name} = useParams()
-  const [taggedArtworks, setTaggedArtworks] = useState(null)
+  const [tagObj, setTagObj] = useState(null)
 
   useEffect(() => {
     fetch(`/tags/${name}`)
     .then((r) => {
       if (r.ok) {
-        r.json().then((art) => setTaggedArtworks(art))
+        r.json().then((art) => setTagObj(art))
       }
     })
   }, [name])
 
   return (
     <div>
-
-    {
-      taggedArtworks
-      ?
-      <div>
-        {
-            taggedArtworks.artworks.map((a) => {
-              console.log(a)
-              return (
-                <PreviewArtwork
-                  key = {a.id}
-                  id = {a.id}
-                  image_url = {a.image_url}
-                  likes = {a.likes}
-                  title = {a.title}
-                  user = {a.user}
-                />
-              )
-            })
-        }
-      </div>
-      : `Tag Does Not Exist`
-    }
-  </div>
+      {
+        tagObj
+        ?
+        <RowsOfArtwork
+          artworks = {tagObj.artworks}
+        />
+        : null
+      }
+    </div>
   )
 }
 
