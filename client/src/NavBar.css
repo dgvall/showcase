@@ -13,3 +13,12 @@
   margin-right: 1em;
   margin-left: 1em;
 }
+
+#search-bar {
+  display: flex;
+  width: 40vw;
+}
+
+#search-bar input {
+  width: 100%;
+}

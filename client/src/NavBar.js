@@ -1,15 +1,28 @@
-import React from "react"
+import React, {useState} from "react"
 import { NavLink } from "react-router-dom"
 
 import "./NavBar.css"
 
-function NavBar({user, handleLogout}) {
+function NavBar({user, handleLogout, handleSearch}) {
+  const [search, setSearch] = useState("")
   return (
     <div id = "navbar">
       
       <NavLink
         exact to = "/artworks"
       >Showcase</NavLink>
+      <form
+      id = "search-bar"
+      onSubmit = {(e) => handleSearch(e, search)}
+      >
+      <input
+        placeholder = "Search"
+        onChange = {(e) => setSearch(e.target.value)}
+        value = {search}
+      >
+      </input>
+      <button>🔎</button>
+      </form>
       {
         user
         ? 
