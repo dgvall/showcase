@@ -12,6 +12,8 @@ import Home from "./Home";
 import ArtworkPage from "./ArtworkPage";
 import UserPage from "./UserPage";
 import TagPage from "./TagPage"
+import PreviewArtwork from "./PreviewArtwork";
+import ArtworkContainer from "./ArtworkContainer";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -31,6 +33,22 @@ function App() {
     .then((art) => setHomeArtworks(art))
   }, [])
 
+  function updateUserLikedArtworks(artwork) {
+    if (user) {
+      const isLiked = user.liked_artworks.some((a) => a.id === artwork.id)
+
+    if (isLiked) {
+      console.log("removing!")
+      const updatedArtworks = user.liked_artworks.filter((a) => a.id !== artwork.id)
+      setUser({...user, liked_artworks: updatedArtworks})
+    }
+    else {
+      console.log("liking!")
+      const updatedArtworks = [...user.liked_artworks, artwork]
+      setUser({...user, liked_artworks: updatedArtworks})
+    }
+    }
+  }
   function onSearch(e, tagName) {
     e.preventDefault()
     console.log(tagName)
@@ -51,7 +69,11 @@ function App() {
   return (
     <div className="App">
       <NavBar user = {user} handleLogout = {onLogout} handleSearch = {onSearch}/>
-      
+      <ArtworkContainer
+        artworks = {homeArtworks}
+        currentUser = {user}
+        updateUserLikedArtworks = {updateUserLikedArtworks}
+      />
       <Switch>
         <Route exact path = "/artworks">
           <Home
@@ -60,8 +82,11 @@ function App() {
           />
         </Route>
 
-        <Route path = "/tags/:name">
-         <TagPage />
+        <Route exact path = "/tags/:name">
+         <TagPage
+          currentUser = {user}
+          updateUserLikedArtworks = {updateUserLikedArtworks}
+         />
         </Route>
 
         <Route exact path = "/users/:username">

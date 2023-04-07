@@ -2,13 +2,19 @@ import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import './PreviewArtwork.css'
 
-function PreviewArtwork({id, image_url, tags, likes, title, user, likedByUser}) {
+function PreviewArtwork({id, image_url, tags, likes, title, user, likedByUser, updateUserLikedArtworks}) {
   const [hovered, setHovered] = useState(false)
-  const [liked, setLiked] = useState(likedByUser)
+  // const [liked, setLiked] = useState(likedByUser)
   const history = useHistory()
-
   function handleLike() {
-    if(liked === false) {
+    const artwork = {
+      id: id,
+      likes: likes,
+      title: title,
+      image_url: image_url,
+      user: user
+    }
+    if(likedByUser === false) {
       fetch("/user_likes", {
         method: "POST",
         headers: {
@@ -17,16 +23,18 @@ function PreviewArtwork({id, image_url, tags, likes, title, user, likedByUser}) 
         body: JSON.stringify({ artwork_id: id })
       }).then((r) => {
         if (r.ok) {
-          setLiked(true)
+          r.json().then((user_like) => {
+            updateUserLikedArtworks(artwork)
+          })
         }
       })
     }
-    else {
+    else if(likedByUser === true){
       fetch(`/user_likes/${id}`, {
         method: "DELETE"
     }).then((r) => {
       if(r.ok) {
-        setLiked(false)
+        updateUserLikedArtworks(artwork)
       }
     })
     }
@@ -56,9 +64,9 @@ function PreviewArtwork({id, image_url, tags, likes, title, user, likedByUser}) 
               onClick = {handleLike}
             >⭐ {likes}</p>
             <p>{
-                liked
-                ? "Hello"
-                : "No"
+                likedByUser
+                ? "Unlike"
+                : "Like"
               }</p>
           </div>
       }

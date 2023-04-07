@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import ArtworkContainer from './ArtworkContainer'
 
-function TagPage() {
+function TagPage({currentUser, updateUserLikedArtworks}) {
   const {name} = useParams()
   const [tagObj, setTagObj] = useState(null)
 
@@ -22,6 +22,8 @@ function TagPage() {
         ?
         <ArtworkContainer
           artworks = {tagObj.artworks}
+          currentUser = {currentUser}
+          updateUserLikedArtworks = {updateUserLikedArtworks}
         />
         : null
       }
