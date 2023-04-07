@@ -11,12 +11,11 @@ import UploadForm from "./UploadForm"
 import Home from "./Home";
 import ArtworkPage from "./ArtworkPage";
 import UserPage from "./UserPage";
-import PreviewArtwork from "./PreviewArtwork";
+import TagPage from "./TagPage"
 
 function App() {
   const [user, setUser] = useState(null)
   const [homeArtworks, setHomeArtworks] = useState([])
-  const [taggedArtworks, setTaggedArtworks] = useState(null)
   const [selectedUser, setSelectedUser] = useState(null)
   const history = useHistory()
 
@@ -35,15 +34,8 @@ function App() {
   function onSearch(e, tagName) {
     e.preventDefault()
     console.log(tagName)
-    fetch(`/tags/${tagName}`)
-    .then((r) => {
-      if (r.ok) {
-        r.json().then((art) => setTaggedArtworks(art))
-        history.push(`/tags/${tagName}`)
-      }
-    })
+    history.push(`/tags/${tagName}`)
   }
-  console.log(taggedArtworks)
 
   function onLogout() {
     fetch("/logout", {
@@ -68,32 +60,8 @@ function App() {
           />
         </Route>
 
-        <Route path = "/">
-          <div>
-
-            {
-              taggedArtworks
-              ?
-              <div>
-                {
-                    taggedArtworks.artworks.map((a) => {
-                      console.log(a)
-                      return (
-                        <PreviewArtwork
-                          key = {a.id}
-                          id = {a.id}
-                          image_url = {a.image_url}
-                          likes = {a.likes}
-                          title = {a.title}
-                          user = {a.user}
-                        />
-                      )
-                    })
-                }
-              </div>
-              : `Tag Does Not Exist`
-            }
-          </div>
+        <Route path = "/tags/:name">
+         <TagPage />
         </Route>
 
         <Route exact path = "/users/:username">
