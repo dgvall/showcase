@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import PreviewArtwork from './PreviewArtwork'
-import './RowsOfArtwork.css'
+import './ArtworkContainer.css'
 
-function RowsOfArtwork({artworks}) {
+function ArtworkContainer({artworks}) {
   return (
     <div className = "art-container">
         {
@@ -24,4 +24,4 @@ function RowsOfArtwork({artworks}) {
   )
 }
 
-export default RowsOfArtwork
+export default ArtworkContainer
