@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {useHistory} from 'react-router-dom'
 
-function Login({setUser}) {
+function Login({setUser, setSelectedUser}) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
@@ -24,8 +24,11 @@ function Login({setUser}) {
     })
       .then((r) => {
         if (r.ok) {
-          r.json().then((user) => setUser(user))
-          history.push("/artworks")
+          r.json().then((user) => {
+            setUser(user)
+            setSelectedUser(user)
+            history.push(`/users/${username}`)
+          })
         }
         else {
           // append errors to error state which DOM shows

@@ -57,6 +57,7 @@ function App() {
     .then((r) => {
       if (r.ok) {
         setUser(null)
+        setSelectedUser(null)
       }
     })
   }
@@ -104,7 +105,10 @@ function App() {
         </Route>
 
         <Route exact path = "/login">
-          <Login setUser = {setUser}/>
+          <Login
+            setUser = {setUser}
+            setSelectedUser = {setSelectedUser}
+          />
         </Route>
 
         <Route exact path = "/signup">
