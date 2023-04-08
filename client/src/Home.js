@@ -1,8 +1,9 @@
 import React from 'react'
 import PreviewArtwork from './PreviewArtwork'
+import ArtworkContainer from './ArtworkContainer'
 import "./Home.css"
 
-function Home({art, currentUser}) {
+function Home({art, currentUser, updateUserLikedArtworks}) {
 
   const likedArtworks = []
 
@@ -12,8 +13,18 @@ function Home({art, currentUser}) {
         })
     }
   return (
-    <div id = "home-art-container">
+    <div>
       {
+        art
+        ?
+        <ArtworkContainer
+          artworks = {art}
+          currentUser = {currentUser}
+          updateUserLikedArtworks = {updateUserLikedArtworks}
+        />
+        : null
+      }
+      {/* {
         art.map((a) => {
           let liked = false
           const found = likedArtworks.find((likedArt) => likedArt === a.id)
@@ -33,7 +44,7 @@ function Home({art, currentUser}) {
             />
           )
         })
-      }
+      } */}
     </div>
   )
 }

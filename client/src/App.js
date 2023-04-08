@@ -72,8 +72,9 @@ function App() {
       <Switch>
         <Route exact path = "/artworks">
           <Home
-          art = {homeArtworks}
-          currentUser = {user}
+            art = {homeArtworks}
+            currentUser = {user}
+            updateUserLikedArtworks = {updateUserLikedArtworks}
           />
         </Route>
 

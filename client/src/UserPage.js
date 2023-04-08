@@ -9,19 +9,34 @@ function UserPage({setSelectedUser, selectedUser, currentUser, updateUserLikedAr
   const { username } = useParams()
 
   useEffect(() => {
-    if (username !== null || "artworks") {
-      fetch(`/users/${username}`)
-        .then((r) => {
-          if (r.ok) {
-            r.json().then((userData) => setSelectedUser(userData))
-          }
-          else {
-            console.log("render this error in error state, probably something like user not found")
-          }
+    if(currentUser) {
+      if(currentUser.username === username) {
+        setSelectedUser(currentUser)
+      }
+      else {
+        console.log("I NEED TO FETCH")
+        fetch(`/users/${username}`)
+          .then((r) => {
+            if (r.ok) {
+              r.json().then((userData) => setSelectedUser(userData))
+            }
+            else {
+              console.log("render this error in error state, probably something like user not found")
+            }
         })
       }
-  }, [username])
-
+    } else {
+      fetch(`/users/${username}`)
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((userData) => setSelectedUser(userData))
+        }
+        else {
+          console.log("render this error in error state, probably something like user not found")
+        }
+    })
+    }
+  }, [username, currentUser])
   if (selectedUser) {
     console.log(selectedUser.artworks)
   }
@@ -40,7 +55,7 @@ function UserPage({setSelectedUser, selectedUser, currentUser, updateUserLikedAr
             <h1>Gallery</h1>
             <div className = "user-page-artwork">
               {
-                selectedUser.artworks
+                selectedUser
                 ?
                   <ArtworkContainer
                     artworks = {selectedUser.artworks}
@@ -70,12 +85,12 @@ function UserPage({setSelectedUser, selectedUser, currentUser, updateUserLikedAr
               }
             </div>
             <h1>Liked</h1>
-            <div className = "user-page-artwork">
+            <div>
               {
                   selectedUser.liked_artworks[0]
                   ?
                   <ArtworkContainer
-                    artworks = {currentUser.liked_artworks}
+                    artworks = {selectedUser.liked_artworks}
                     currentUser = {currentUser}
                     updateUserLikedArtworks = {updateUserLikedArtworks}
                  />
