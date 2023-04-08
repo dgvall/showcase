@@ -36,8 +36,6 @@ function ArtworkPage() {
     }
   }, [id])
 
-  console.log(selectedArtwork)
-
   return (
     
     <div>

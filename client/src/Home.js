@@ -3,8 +3,6 @@ import PreviewArtwork from './PreviewArtwork'
 import "./Home.css"
 
 function Home({art, currentUser}) {
-  console.log(currentUser)
-  console.log(art)
 
   const likedArtworks = []
 
@@ -12,7 +10,6 @@ function Home({art, currentUser}) {
       currentUser.liked_artworks.map((a) => {
         likedArtworks.push(a.id)
         })
-        console.log(likedArtworks)
     }
   return (
     <div id = "home-art-container">

@@ -12,8 +12,6 @@ import Home from "./Home";
 import ArtworkPage from "./ArtworkPage";
 import UserPage from "./UserPage";
 import TagPage from "./TagPage"
-import PreviewArtwork from "./PreviewArtwork";
-import ArtworkContainer from "./ArtworkContainer";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -38,12 +36,10 @@ function App() {
       const isLiked = user.liked_artworks.some((a) => a.id === artwork.id)
 
     if (isLiked) {
-      console.log("removing!")
       const updatedArtworks = user.liked_artworks.filter((a) => a.id !== artwork.id)
       setUser({...user, liked_artworks: updatedArtworks})
     }
     else {
-      console.log("liking!")
       const updatedArtworks = [...user.liked_artworks, artwork]
       setUser({...user, liked_artworks: updatedArtworks})
     }
@@ -51,7 +47,6 @@ function App() {
   }
   function onSearch(e, tagName) {
     e.preventDefault()
-    console.log(tagName)
     history.push(`/tags/${tagName}`)
   }
 
@@ -69,11 +64,11 @@ function App() {
   return (
     <div className="App">
       <NavBar user = {user} handleLogout = {onLogout} handleSearch = {onSearch}/>
-      <ArtworkContainer
+      {/* <ArtworkContainer
         artworks = {homeArtworks}
         currentUser = {user}
         updateUserLikedArtworks = {updateUserLikedArtworks}
-      />
+      /> */}
       <Switch>
         <Route exact path = "/artworks">
           <Home
@@ -93,6 +88,8 @@ function App() {
           <UserPage
             selectedUser = {selectedUser}
             setSelectedUser = {setSelectedUser}
+            currentUser = {user}
+            updateUserLikedArtworks = {updateUserLikedArtworks}
           />
         </Route>
 

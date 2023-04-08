@@ -15,6 +15,10 @@ function TagPage({currentUser, updateUserLikedArtworks}) {
     })
   }, [name])
 
+  if (tagObj) {
+    console.log(tagObj.artworks)
+  }
+
   return (
     <div>
       {

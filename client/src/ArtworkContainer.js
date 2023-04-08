@@ -15,7 +15,7 @@ function ArtworkContainer({artworks, currentUser, updateUserLikedArtworks}) {
     }
   }, [currentUser])
 
-  console.log(likedArtworks)
+  console.log(artworks)
   function isLiked(a) {  
     if(currentUser) {
       const liked = likedArtworks.some((likedArt) => likedArt === a.id)
