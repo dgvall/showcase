@@ -4,12 +4,12 @@ import './PreviewArtwork.css'
 
 function PreviewArtwork({id, image_url, tags, likes, title, user, likedByUser, updateUserLikedArtworks}) {
   const [hovered, setHovered] = useState(false)
-  // const [liked, setLiked] = useState(likedByUser)
+  const [updatedLikes, setUpdatedLikes] = useState(likes)
   const history = useHistory()
   function handleLike() {
     const artwork = {
       id: id,
-      likes: likes,
+      likes: updatedLikes,
       title: title,
       image_url: image_url,
       user: user
@@ -24,6 +24,8 @@ function PreviewArtwork({id, image_url, tags, likes, title, user, likedByUser, u
       }).then((r) => {
         if (r.ok) {
           r.json().then((user_like) => {
+            console.log(r.ok)
+            setUpdatedLikes(() => updatedLikes + 1)
             updateUserLikedArtworks(artwork)
           })
         }
@@ -34,6 +36,7 @@ function PreviewArtwork({id, image_url, tags, likes, title, user, likedByUser, u
         method: "DELETE"
     }).then((r) => {
       if(r.ok) {
+        setUpdatedLikes(() => updatedLikes -1)
         updateUserLikedArtworks(artwork)
       }
     })
@@ -62,7 +65,7 @@ function PreviewArtwork({id, image_url, tags, likes, title, user, likedByUser, u
             </div>
             <p
               onClick = {handleLike}
-            >⭐ {likes}</p>
+            >⭐ {updatedLikes}</p>
             <p>{
                 likedByUser
                 ? "Unlike"

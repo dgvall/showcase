@@ -7,14 +7,19 @@ class UserLikesController < ApplicationController
     if like.save
       render json: like, status: :created
     else
-      render json: {errors: ["Can't like this artwork"]}
+      render json: {errors: ["Can't like this artwork"]}, status: :unprocessable_entity
     end
   end
 
   def destroy
     artwork = Artwork.find(params[:id])
     like = artwork.user_likes.find_by(user_id: @current_user.id)
+
+    if (like)
     like.destroy
+    else
+    render json: {errors: ["Not liked"]}, status: :unprocessable_entity
+    end
   end
 
   private
