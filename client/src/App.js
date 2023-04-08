@@ -58,6 +58,7 @@ function App() {
       if (r.ok) {
         setUser(null)
         setSelectedUser(null)
+        history.push("/artworks")
       }
     })
   }
