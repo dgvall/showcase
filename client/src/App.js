@@ -65,12 +65,10 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user = {user} handleLogout = {onLogout} handleSearch = {onSearch}/>
-      {/* <ArtworkContainer
-        artworks = {homeArtworks}
-        currentUser = {user}
-        updateUserLikedArtworks = {updateUserLikedArtworks}
-      /> */}
+      <NavBar currentUser = {user}
+        handleLogout = {onLogout}
+        handleSearch = {onSearch}
+      />
       <Switch>
         <Route exact path = "/artworks">
           <Home

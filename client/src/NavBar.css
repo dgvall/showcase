@@ -1,24 +1,85 @@
 #navbar {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-}
-
-.navbar-logged {
-  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  padding: 10px;
 }
 
 .navbar-header {
-  display: flex;
-  margin-right: 1em;
-  margin-left: 1em;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #333;
+  margin-right: 20px;
 }
 
 #search-bar {
   display: flex;
-  width: 40vw;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-right: 20px;
 }
 
 #search-bar input {
-  width: 100%;
+  border: none;
+  padding: 5px;
+  font-size: 1rem;
+}
+
+#search-bar button {
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.navbar-logged {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-account {
+  position: relative;
+  margin-right: 20px;
+  list-style: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.navbar-account li {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+.navbar-account li:hover {
+  text-decoration: underline;
+}
+
+.navbar-account div {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: none;
+}
+
+#account {
+  font-size: 1rem;
+  padding-bottom: .8vh;
+  color: #333;
+}
+
+.navbar-account:hover div {
+  display: block;
+}
+
+.navbar-account div li {
+  display: block;
+  margin: 5px 0;
 }

@@ -3,12 +3,14 @@ import { NavLink } from "react-router-dom"
 
 import "./NavBar.css"
 
-function NavBar({user, handleLogout, handleSearch}) {
+function NavBar({currentUser, handleLogout, handleSearch}) {
   const [search, setSearch] = useState("")
+  const [hovered, setHovered] = useState()
   return (
-    <div id = "navbar">
+    <nav id = "navbar">
       
       <NavLink
+        className = "navbar-header"
         exact to = "/artworks"
       >Showcase</NavLink>
       <form
@@ -24,20 +26,38 @@ function NavBar({user, handleLogout, handleSearch}) {
       <button>🔎</button>
       </form>
       {
-        user
+        currentUser
         ? 
         <div className = "navbar-logged">
+          <ul
+            className = "navbar-account"
+            onMouseEnter = {() => setHovered(true)}
+            onMouseLeave = {() => setHovered(false)}
+          >
+            <li id = "account">Account</li>
+            {
+              hovered && (
+                <div>
+                    <li>
+                      <NavLink
+                        to = {`/users/${currentUser.username}`}
+                        className = "navbar-header"
+                      >Profile</NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        exact to = "/logout"
+                        className = "navbar-header"
+                        onClick = {handleLogout}
+                    >Logout</NavLink>
+                    </li>
+                </div>
+              )
+            }
+          </ul>
 
-          <NavLink
-            exact to = "/account"
-            className = "navbar-header"
-          >Account</NavLink>
 
-          <NavLink
-            exact to = "/logout"
-            className = "navbar-header"
-            onClick = {handleLogout}
-          >Logout</NavLink>
+
 
           <NavLink
             exact to = "/upload"
@@ -57,7 +77,7 @@ function NavBar({user, handleLogout, handleSearch}) {
           >Signup</NavLink>
         </div>
       }
-    </div>
+    </nav>
   )
 }
 
