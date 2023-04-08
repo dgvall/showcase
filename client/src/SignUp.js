@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import "./SignUp.css"
-function SignUp({setUser}) {
+function SignUp({setUser, setSelectedUser}) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
@@ -29,7 +29,8 @@ function SignUp({setUser}) {
       .then(res => res.json())
       .then(user => {
         setUser(user)
-        history.push("/")
+        setSelectedUser(user)
+        history.push("/artworks")
       })
   }
 

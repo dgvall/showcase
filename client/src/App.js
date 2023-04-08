@@ -113,7 +113,10 @@ function App() {
         </Route>
 
         <Route exact path = "/signup">
-          <SignUp setUser = {setUser}/>
+          <SignUp
+            setUser = {setUser}
+            setSelectedUser = {setSelectedUser}
+          />
         </Route>
 
         <Route exact path = "/upload">
