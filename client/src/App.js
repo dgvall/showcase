@@ -95,7 +95,12 @@ function App() {
         </Route>
 
         <Route exact path = "/users/:username/artworks/:id">
-          <ArtworkPage />
+          <ArtworkPage
+            selectedUser = {selectedUser}
+            setSelectedUser = {setSelectedUser}
+            currentUser = {user}
+            updateUserLikedArtworks = {updateUserLikedArtworks}
+          />
         </Route>
 
         <Route exact path = "/login">

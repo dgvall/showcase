@@ -37,10 +37,11 @@ function UserPage({setSelectedUser, selectedUser, currentUser, updateUserLikedAr
     })
     }
   }, [username, currentUser])
-  if (selectedUser) {
-    console.log(selectedUser.artworks)
-  }
+if (selectedUser) {
+  console.log(selectedUser.artworks)
+  console.log(selectedUser.liked_artworks)
 
+}
   return (
     <>
       {

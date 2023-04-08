@@ -15,7 +15,6 @@ function ArtworkContainer({artworks, currentUser, updateUserLikedArtworks}) {
     }
   }, [currentUser])
 
-  console.log(artworks)
   function isLiked(a) {  
     if(currentUser) {
       const liked = likedArtworks.some((likedArt) => likedArt === a.id)
@@ -26,8 +25,17 @@ function ArtworkContainer({artworks, currentUser, updateUserLikedArtworks}) {
     <div className = "art-container">
         {
           artworks.map((a) => {
-            console.log(a)
             let liked = isLiked(a)
+            let user
+            if (a.user) {
+              user = a.user
+            } else {
+              user = {
+                id: currentUser.id,
+                image_url: currentUser.image_url,
+                username: currentUser.username
+              }
+            }
             return (
               <PreviewArtwork
                 key = {a.id}
@@ -35,7 +43,7 @@ function ArtworkContainer({artworks, currentUser, updateUserLikedArtworks}) {
                 image_url = {a.image_url}
                 likes = {a.likes}
                 title = {a.title}
-                user = {a.user}
+                user = {user}
                 likedByUser = {liked}
                 updateUserLikedArtworks = {updateUserLikedArtworks}
               />

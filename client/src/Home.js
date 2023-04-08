@@ -1,5 +1,4 @@
 import React from 'react'
-import PreviewArtwork from './PreviewArtwork'
 import ArtworkContainer from './ArtworkContainer'
 import "./Home.css"
 
