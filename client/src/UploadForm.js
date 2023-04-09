@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom'
 
 import "./UploadForm.css"
 
-function UploadForm() {
+function UploadForm({addUserArtwork}) {
   const [title, setTitle] = useState("")
   const [imageUrl, setImageUrl] = useState("")
   const [tag, setTag] = useState("")
@@ -30,7 +30,8 @@ function UploadForm() {
       .then(res => res.json())
       .then(artwork => {
         console.log(artwork)
-        history.push("/")
+        addUserArtwork(artwork)
+        history.push(`/users/${artwork.user.username}/artworks/${artwork.id}`)
       })
 
     console.log("Submitted!")

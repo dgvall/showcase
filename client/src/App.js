@@ -33,6 +33,7 @@ function App() {
   }, [])
 
   console.log(homeArtworks)
+  console.log(user)
 
   function updateUserLikedArtworks(artwork) {
     if (user) {
@@ -49,6 +50,15 @@ function App() {
     }
   }
 
+  function addUserArtwork(artwork) {
+    // updates user data
+    const updatedArtworks = [...user.artworks, artwork]
+    setUser({...user, artworks: updatedArtworks})
+
+    // deletes homeArtwork data
+    setHomeArtworks([...homeArtworks, artwork])
+  }
+
   function updateUserArtwork(artwork) {
     // updates user data
     const updatedArtworks = user.artworks.map((a) => {
@@ -58,7 +68,7 @@ function App() {
     })
     setUser({...user, artworks: updatedArtworks})
 
-    // updates if it's in homeArtworks
+    // updates homeArtworks data
     const updatedHomeArtworks = homeArtworks.map((a) => {
       if (a.id === artwork.id) {
         return artwork
@@ -68,8 +78,13 @@ function App() {
   }
 
   function deleteUserArtwork(artworkId) {
+    // deletes user data
     const updatedArtworks = user.artworks.filter((a) => a.id !== artworkId)
     setUser({...user, artworks: updatedArtworks})
+
+    // deletes homeArtworks data
+    const updatedHomeArtworks = homeArtworks.filter((a) => a.id !== artworkId)
+    setHomeArtworks(updatedHomeArtworks)
   }
 
 
@@ -147,7 +162,9 @@ function App() {
         </Route>
 
         <Route exact path = "/upload">
-          <UploadForm />
+          <UploadForm
+            addUserArtwork = {addUserArtwork}
+          />
         </Route>
 
         <Route exact path = "/users/:username/artworks/:id/edit">
