@@ -12,6 +12,7 @@ import Home from "./Home";
 import ArtworkPage from "./ArtworkPage";
 import UserPage from "./UserPage";
 import TagPage from "./TagPage"
+import EditArtwork from "./EditArtworkForm";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -31,6 +32,8 @@ function App() {
     .then((art) => setHomeArtworks(art))
   }, [])
 
+  console.log(homeArtworks)
+
   function updateUserLikedArtworks(artwork) {
     if (user) {
       const isLiked = user.liked_artworks.some((a) => a.id === artwork.id)
@@ -45,6 +48,31 @@ function App() {
     }
     }
   }
+
+  function updateUserArtwork(artwork) {
+    // updates user data
+    const updatedArtworks = user.artworks.map((a) => {
+      if (a.id === artwork.id) {
+        return artwork
+      } else return a
+    })
+    setUser({...user, artworks: updatedArtworks})
+
+    // updates if it's in homeArtworks
+    const updatedHomeArtworks = homeArtworks.map((a) => {
+      if (a.id === artwork.id) {
+        return artwork
+      } else return a
+    })
+    setHomeArtworks(updatedHomeArtworks)
+  }
+
+  function deleteUserArtwork(artwork) {
+    const updatedArtworks = user.artworks.filter((a) => a.id !== artwork.id)
+    setUser({...user, artworks: updatedArtworks})
+  }
+
+
   function onSearch(e, tagName) {
     e.preventDefault()
     history.push(`/tags/${tagName}`)
@@ -120,6 +148,13 @@ function App() {
         <Route exact path = "/upload">
           <UploadForm />
         </Route>
+
+        <Route exact path = "/users/:username/artworks/:id/edit">
+          <EditArtwork
+            currentUser = {user}
+            updateUserArtwork = {updateUserArtwork}
+          />
+       </Route>
       </Switch>
     </div>
   );

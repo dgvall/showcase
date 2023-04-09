@@ -19,6 +19,22 @@ class ArtworksController < ApplicationController
     end
   end
 
+  def update
+    artwork = Artwork.find(params[:id])
+    artwork.update(title: params[:title], image_url: params[:image_url])
+
+
+    artwork.tags = params[:tags].map do |t|
+      Tag.find_or_create_by(name: t)
+    end
+
+    if artwork.save
+      render json: artwork
+    else
+      render json: { errors: artwork.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
+
   def index
     artworks = Artwork.all
     render json: artworks, status: :ok

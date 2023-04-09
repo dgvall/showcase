@@ -6,6 +6,7 @@ import ArtworkContainer from './ArtworkContainer'
 function ArtworkPage({currentUser, updateUserLikedArtworks, setSelectedUser, selectedUser}) {
   // const [selectedUser, setSelectedUser] = useState(null)
   const [selectedArtwork, setSelectedArtwork] = useState(null)
+  const [canEdit, setCanEdit] = useState(false)
   const { username, id } = useParams()
   const history = useHistory()
 
@@ -13,6 +14,7 @@ function ArtworkPage({currentUser, updateUserLikedArtworks, setSelectedUser, sel
     if(currentUser) {
       if(currentUser.username === username) {
         setSelectedUser(currentUser)
+        setCanEdit(true)
       }
       else {
         console.log("I NEED TO FETCH")
@@ -78,6 +80,14 @@ function ArtworkPage({currentUser, updateUserLikedArtworks, setSelectedUser, sel
           src = {selectedArtwork.image_url}
           alt = {selectedArtwork.title}
         />
+        {
+          canEdit
+          ?
+          <button
+            onClick = {() => history.push(`/users/${selectedUser.username}/artworks/${selectedArtwork.id}/edit`)}
+          >Edit Artwork</button>
+          : null
+        }
         <h1>{selectedArtwork.title}</h1>
         <p
           onClick = {() => history.push(`/users/${username}`)}

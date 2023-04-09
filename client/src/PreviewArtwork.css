@@ -30,9 +30,11 @@
 .hover-details  p {
   font-size: 1rem;
   background: none;
+  color: white;
 }
 
 .hover-details h3 {
   font-size: 1.2rem;
   background: none;
+  color: white;
 }

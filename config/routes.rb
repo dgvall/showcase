@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   resources :tags, only: [:index]
   # resources :artwork_tags, only [:index]
-  resources :artworks, only: [:create, :index]
+  resources :artworks, only: [:create, :index, :update, :destroy]
   resources :user_likes, only: [:create, :destroy]
   # resources :users, only: [:show]
 
