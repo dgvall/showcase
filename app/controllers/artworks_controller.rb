@@ -40,6 +40,12 @@ class ArtworksController < ApplicationController
     render json: artworks, status: :ok
   end
 
+  def destroy
+    artwork = Artwork.find(params[:id])
+    artwork.destroy
+    head :no_content
+  end
+
   private
 
   def artwork_params

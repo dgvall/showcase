@@ -3,7 +3,7 @@ import {useParams, useHistory} from 'react-router-dom'
 import PreviewArtwork from './PreviewArtwork'
 import ArtworkContainer from './ArtworkContainer'
 
-function ArtworkPage({currentUser, updateUserLikedArtworks, setSelectedUser, selectedUser}) {
+function ArtworkPage({currentUser, updateUserLikedArtworks, setSelectedUser, selectedUser, deleteUserArtwork}) {
   // const [selectedUser, setSelectedUser] = useState(null)
   const [selectedArtwork, setSelectedArtwork] = useState(null)
   const [canEdit, setCanEdit] = useState(false)
@@ -68,6 +68,17 @@ function ArtworkPage({currentUser, updateUserLikedArtworks, setSelectedUser, sel
     }
   }, [id, selectedUser])
 
+  function handleDeleteArtwork() {
+    fetch(`/artworks/${selectedArtwork.id}`, {
+      method: "DELETE",
+    })
+      .then((r) => {
+        if (r.ok) {
+          deleteUserArtwork(selectedArtwork.id)
+        }
+      })
+  }
+
   return (
     
     <div>
@@ -83,9 +94,14 @@ function ArtworkPage({currentUser, updateUserLikedArtworks, setSelectedUser, sel
         {
           canEdit
           ?
-          <button
-            onClick = {() => history.push(`/users/${selectedUser.username}/artworks/${selectedArtwork.id}/edit`)}
-          >Edit Artwork</button>
+          <div>
+            <button
+              onClick = {() => history.push(`/users/${selectedUser.username}/artworks/${selectedArtwork.id}/edit`)}
+            >Edit Artwork</button>
+            <button
+              onClick = {handleDeleteArtwork}
+            >Delete Artwork</button>
+          </div>
           : null
         }
         <h1>{selectedArtwork.title}</h1>

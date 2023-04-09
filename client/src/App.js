@@ -67,8 +67,8 @@ function App() {
     setHomeArtworks(updatedHomeArtworks)
   }
 
-  function deleteUserArtwork(artwork) {
-    const updatedArtworks = user.artworks.filter((a) => a.id !== artwork.id)
+  function deleteUserArtwork(artworkId) {
+    const updatedArtworks = user.artworks.filter((a) => a.id !== artworkId)
     setUser({...user, artworks: updatedArtworks})
   }
 
@@ -128,6 +128,7 @@ function App() {
             setSelectedUser = {setSelectedUser}
             currentUser = {user}
             updateUserLikedArtworks = {updateUserLikedArtworks}
+            deleteUserArtwork = {deleteUserArtwork}
           />
         </Route>
 
