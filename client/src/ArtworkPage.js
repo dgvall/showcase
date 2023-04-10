@@ -77,6 +77,7 @@ function ArtworkPage({currentUser, updateUserLikedArtworks, setSelectedUser, sel
       .then((r) => {
         if (r.ok) {
           deleteUserArtwork(selectedArtwork.id)
+          history.push(`/users/${username}`)
         }
       })
   }
