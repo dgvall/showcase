@@ -35,7 +35,7 @@ class ArtworksController < ApplicationController
   end
 
   def index
-    artworks = Artwork.all
+    artworks = Artwork.left_outer_joins(:user_likes).group("artworks.id").order("COUNT(user_likes.id) DESC")
     render json: artworks, status: :ok
   end
 
