@@ -1,18 +1,16 @@
-// import logo from './logo.svg';
-
-import React, {useState, useEffect} from "react"
-import {Switch, Route, useHistory} from "react-router-dom"
-import './App.css';
+import React, { useState, useEffect } from "react"
+import { Switch, Route, useHistory } from "react-router-dom"
+import './App.css'
 
 import NavBar from "./NavBar"
 import Login from "./Login"
 import SignUp from "./SignUp"
 import UploadForm from "./UploadForm"
-import Home from "./Home";
-import ArtworkPage from "./ArtworkPage";
-import UserPage from "./UserPage";
+import Home from "./Home"
+import ArtworkPage from "./ArtworkPage"
+import UserPage from "./UserPage"
 import TagPage from "./TagPage"
-import EditArtwork from "./EditArtworkForm";
+import EditArtwork from "./EditArtworkForm"
 
 function App() {
   const [user, setUser] = useState(null)
@@ -28,12 +26,9 @@ function App() {
     })
 
     fetch("/artworks")
-    .then((r) => r.json())
-    .then((art) => setHomeArtworks(art))
+      .then((r) => r.json())
+      .then((art) => setHomeArtworks(art))
   }, [])
-
-  console.log(homeArtworks)
-  console.log(user)
 
   function updateUserLikedArtworks(artwork) {
     if (user) {
@@ -87,7 +82,6 @@ function App() {
     setHomeArtworks(updatedHomeArtworks)
   }
 
-
   function onSearch(e, tagName) {
     e.preventDefault()
     history.push(`/tags/${tagName}`)
@@ -123,8 +117,8 @@ function App() {
 
         <Route exact path = "/tags/:name">
          <TagPage
-          currentUser = {user}
-          updateUserLikedArtworks = {updateUserLikedArtworks}
+            currentUser = {user}
+            updateUserLikedArtworks = {updateUserLikedArtworks}
          />
         </Route>
 
@@ -173,10 +167,10 @@ function App() {
             currentUser = {user}
             updateUserArtwork = {updateUserArtwork}
           />
-       </Route>
+        </Route>
       </Switch>
     </div>
-  );
+  )
 }
 
 export default App;

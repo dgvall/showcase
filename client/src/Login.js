@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import "./Login.css"
 
 function Login({setUser, setSelectedUser}) {
@@ -40,35 +40,35 @@ function Login({setUser, setSelectedUser}) {
 
   return (
     <div className = "form-container">
-    <h2 className = "form-header">Login</h2>
-    <form className = "form" onSubmit = {handleSubmit}>
-      <input
-        className = "form-input"
-        onChange = {(e) => setUsername(e.target.value)}
-        value = {username}
-        placeholder = "Username"
-      />
-
-      <input
-        className = "form-input"
-        onChange = {(e) => setPassword(e.target.value)}
-        value = {password}
-        placeholder = "Password"
-      />
-      <button className = "form-button">Log In</button>
-    </form>
-    <ul className = "errors-list">
-      {
-        errors.map((e, index) => {
-          return (
-            <li
-              key = {index}
-            >{e}</li>
-          )
-        })
-      }
-    </ul>
-  </div>
+      <h2 className = "form-header">Login</h2>
+      <form className = "form" onSubmit = {handleSubmit}>
+        <input
+          className = "form-input"
+          onChange = {(e) => setUsername(e.target.value)}
+          value = {username}
+          placeholder = "Username"
+        />
+        <input
+          className = "form-input"
+          onChange = {(e) => setPassword(e.target.value)}
+          value = {password}
+          placeholder = "Password"
+        />
+        <button className = "form-button">Log In</button>
+      </form>
+      
+      <ul className = "errors-list">
+        {
+          errors.map((e, index) => {
+            return (
+              <li
+                key = {index}
+              >{e}</li>
+            )
+          })
+        }
+      </ul>
+    </div>
   )
 }
 

@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import './PreviewArtwork.css'
 
-function PreviewArtwork({id, image_url, tags, likes, title, user, likedByUser, updateUserLikedArtworks, preview}) {
+function PreviewArtwork({id, image_url, likes, title, user, likedByUser, updateUserLikedArtworks, preview}) {
   const [hovered, setHovered] = useState(false)
   const [updatedLikes, setUpdatedLikes] = useState(likes)
   const history = useHistory()
@@ -26,7 +26,6 @@ function PreviewArtwork({id, image_url, tags, likes, title, user, likedByUser, u
         }).then((r) => {
           if (r.ok) {
             r.json().then(() => {
-              
               setUpdatedLikes(() => updatedLikes + 1)
               updateUserLikedArtworks(artwork)
             })
@@ -59,48 +58,41 @@ function PreviewArtwork({id, image_url, tags, likes, title, user, likedByUser, u
         hovered &&
           <div className = "hover-details">
             { user
-            ?
-            <>
-            <div>
-            <h3
-              onClick = {() => {
-                if (!preview) {
-                  history.push(`/users/${user.username}/artworks/${id}`)
-                }
-              }}
-            >{title}</h3>
-            <p
-              onClick = {() => {
-                if (!preview) {
-                  history.push(`/users/${user.username}`)
-                }
-              }}
-            >{user.username}</p> 
-            </div>
-            {
-              likedByUser
               ?
-              <p
-                className = "artwork-likes"
-                onClick = {handleLike}
-              >⭐ {updatedLikes}</p>
-              :
-              <p
-                className = "artwork-likes"
-                onClick = {handleLike}
-              >★ {updatedLikes}</p>
+                <>
+                <div>
+                <h3
+                  onClick = {() => {
+                    if (!preview) {
+                      history.push(`/users/${user.username}/artworks/${id}`)
+                    }
+                  }}
+                >{title}</h3>
+                <p
+                  onClick = {() => {
+                    if (!preview) {
+                      history.push(`/users/${user.username}`)
+                    }
+                  }}
+                >{user.username}</p> 
+                </div>
+                {
+                  likedByUser
+                  ?
+                    <p
+                      className = "artwork-likes"
+                      onClick = {handleLike}
+                    >⭐ {updatedLikes}</p>
+                  :
+                    <p
+                      className = "artwork-likes"
+                      onClick = {handleLike}
+                    >★ {updatedLikes}</p>
+                }
+              </>
+              
+              : null
             }
-          </>
-          : null
-            }
-            {/* <p
-              onClick = {handleLike}
-            >⭐★ {updatedLikes}</p> */}
-              {/* {
-                likedByUser
-                ? <div></div>
-                : <div></div>>
-              }</p> */}
           </div>
       }
     </div>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import {useHistory, useParams} from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
+
 import PreviewArtwork from './PreviewArtwork'
 
-function EditArtwork({currentUser, updateUserArtwork}) {
+function EditArtwork({ currentUser, updateUserArtwork }) {
   const [title, setTitle] = useState("")
   const [imageUrl, setImageUrl] = useState("")
   const [tag, setTag] = useState("")
@@ -38,8 +39,6 @@ function EditArtwork({currentUser, updateUserArtwork}) {
       image_url: imageUrl,
     }
 
-  //  update fetch here
-
     fetch(`/artworks/${selectedArtwork.id}`, {
       method: "PATCH",
       headers: {
@@ -59,8 +58,6 @@ function EditArtwork({currentUser, updateUserArtwork}) {
           r.json().then((error) => setErrors(error.errors))
         }
       })
-
-    console.log("Submitted!")
   }
 
   function handleTagSubmit(e) {
@@ -70,70 +67,76 @@ function EditArtwork({currentUser, updateUserArtwork}) {
   }
 
   return (
-    <div id = "upload-container">
-    <h2 className = "form-header">Edit Artwork</h2>
-    <form className = "form" onSubmit = {handleSubmit}>
-      <input
-        className = "form-input"
-        onChange = {(e) => setTitle(e.target.value)}
-        value = {title}
-        placeholder = "Title"
-      />
-
-      <input
-        className = "form-input"
-        onChange = {(e) => setImageUrl(e.target.value)}
-        value = {imageUrl}
-        placeholder = "Image Url"
-      />
-    </form>
-    <form className = "form" onSubmit = {handleTagSubmit}>
-      <input
-        className = "form-input"
-        onChange = {(e) => setTag(e.target.value)}
-        value = {tag}
-        placeholder = "Tag"
-      />
-      <PreviewArtwork
-        id = {0}
-        image_url = {imageUrl}
-        likes = {0}
-        title = {title}
-        user = {currentUser}
-        likedByUser = {false}
-        preview = {true}
-    />
-    </form>
-    <ul>
+    <div>
     {
-     tags.map((t) => {
-      return (
-        <li
-          key = {t}
-        >{t}</li>
-      )
-     })
-    }
-    </ul>
+      canEdit
+      ?
+        <div id = "upload-container">
+        <h2 className = "form-header">Edit Artwork</h2>
+        <form className = "form" onSubmit = {handleSubmit}>
+          <input
+            className = "form-input"
+            onChange = {(e) => setTitle(e.target.value)}
+            value = {title}
+            placeholder = "Title"
+          />
+          <input
+            className = "form-input"
+            onChange = {(e) => setImageUrl(e.target.value)}
+            value = {imageUrl}
+            placeholder = "Image Url"
+          />
+        </form>
+        <form className = "form" onSubmit = {handleTagSubmit}>
+          <input
+            className = "form-input"
+            onChange = {(e) => setTag(e.target.value)}
+            value = {tag}
+            placeholder = "Tag"
+          />
+          <PreviewArtwork
+            id = {0}
+            image_url = {imageUrl}
+            likes = {0}
+            title = {title}
+            user = {currentUser}
+            likedByUser = {false}
+            preview = {true}
+          />
+        </form>
+        <ul>
+          {
+            tags.map((t) => {
+              return (
+                <li
+                  key = {t}
+                >{t}</li>
+              )
+            })
+          }
+        </ul>
 
-    <div id = "button-container">
-      <button onClick = {handleSubmit} className = "form-button">Edit</button>
-    </div>
+        <div id = "button-container">
+          <button onClick = {handleSubmit} className = "form-button">Edit</button>
+        </div>
 
-    <ul className = "errors-list">
-      {
-        errors &&
-        errors.map((e, index) => {
-          return (
-            <li
-              key = {index}
-            >{e}</li>
-          )
-        })
-      }
-    </ul>
+        <ul className = "errors-list">
+          {
+            errors &&
+              errors.map((e, index) => {
+                return (
+                  <li
+                    key = {index}
+                  >{e}</li>
+                )
+              })
+          }
+        </ul>
+      </div>
     
-  </div>
+      : <div className = "not-found">Can't Edit This Artwork</div>
+    }
+    </div>
   )
 }
 

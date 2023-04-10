@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import PreviewArtwork from './PreviewArtwork'
+
 import './ArtworkContainer.css'
 
-function ArtworkContainer({artworks, currentUser, updateUserLikedArtworks}) {
+function ArtworkContainer({ artworks, currentUser, updateUserLikedArtworks }) {
   const [likedArtworks, setLikedArtworks] = useState([])
 
   useEffect(() => {

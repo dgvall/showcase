@@ -38,3 +38,13 @@
 .full-artwork-tags {
   cursor: pointer;
 }
+
+.not-found {
+  font-size: 3rem;
+  color: red;
+  -webkit-text-stroke: black .1rem;
+  font-weight: 900;
+  padding-top: 10vh;
+  display: flex;
+  justify-content: center;
+}

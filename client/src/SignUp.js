@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import "./SignUp.css"
+
 function SignUp({setUser, setSelectedUser}) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -31,8 +32,8 @@ function SignUp({setUser, setSelectedUser}) {
         if (r.ok) {
           r.json().then((user) => {
             setUser(user)
-        setSelectedUser(user)
-        history.push("/artworks")
+            setSelectedUser(user)
+            history.push("/artworks")
           })
         }
         else {
@@ -53,28 +54,24 @@ function SignUp({setUser, setSelectedUser}) {
           value = {username}
           placeholder = "Username"
         />
-
         <input
           className = "form-input"
           onChange = {(e) => setPassword(e.target.value)}
           value = {password}
           placeholder = "Password"
         />
-
         <input
           className = "form-input"
           onChange = {(e) => setPasswordConfirmation(e.target.value)}
           value = {passwordConfirmation}
           placeholder = "Password Confirmation"
         />
-
         <input
           className = "form-input"
           onChange = {(e) => setImageUrl(e.target.value)}
           value = {imageUrl}
           placeholder = "Profile Picture"
         />
-
         <button className = "form-button">Create Account</button>
       </form>
       <ul className = "errors-list">

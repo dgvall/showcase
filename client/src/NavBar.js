@@ -1,18 +1,18 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import { NavLink } from "react-router-dom"
-
 import "./NavBar.css"
 
 function NavBar({currentUser, handleLogout, handleSearch}) {
   const [search, setSearch] = useState("")
   const [hovered, setHovered] = useState()
+
   return (
     <nav id = "navbar">
-      
       <NavLink
         className = "navbar-header"
         exact to = "/artworks"
       >Showcase</NavLink>
+
       <form
       id = "search-bar"
       onSubmit = {(e) => {
@@ -28,15 +28,16 @@ function NavBar({currentUser, handleLogout, handleSearch}) {
       </input>
       <button>🔎</button>
       </form>
+
       {
         currentUser
         ? 
-        <div className = "navbar-logged">
-          <ul
-            className = "navbar-account"
-            onMouseEnter = {() => setHovered(true)}
-            onMouseLeave = {() => setHovered(false)}
-          >
+          <div className = "navbar-logged">
+            <ul
+              className = "navbar-account"
+              onMouseEnter = {() => setHovered(true)}
+              onMouseLeave = {() => setHovered(false)}
+            >
             <li id = "account">Account</li>
             {
               hovered && (
@@ -52,33 +53,31 @@ function NavBar({currentUser, handleLogout, handleSearch}) {
                         exact to = "/logout"
                         className = "navbar-header"
                         onClick = {handleLogout}
-                    >Logout</NavLink>
+                      >Logout</NavLink>
                     </li>
                 </div>
               )
             }
-          </ul>
+            </ul>
 
-
-
-
-          <NavLink
-            exact to = "/upload"
-            className = "navbar-header"
-          >Upload</NavLink>
-        </div>
+            <NavLink
+              exact to = "/upload"
+              className = "navbar-header"
+            >Upload</NavLink>
+          </div>
+          
         :
-        <div className = "navbar-logged">
-          <NavLink
-            exact to = "/login"
-            className = "navbar-header"
-          >Login</NavLink>
+          <div className = "navbar-logged">
+            <NavLink
+              exact to = "/login"
+              className = "navbar-header"
+            >Login</NavLink>
 
-          <NavLink
-            exact to = "/signup"
-            className= "navbar-header"
-          >Signup</NavLink>
-        </div>
+            <NavLink
+              exact to = "/signup"
+              className= "navbar-header"
+            >Signup</NavLink>
+          </div>
       }
     </nav>
   )

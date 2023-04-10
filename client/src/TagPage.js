@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
-import {useParams} from 'react-router-dom'
-import ArtworkContainer from './ArtworkContainer'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import "./TagPage.css"
+
+import ArtworkContainer from './ArtworkContainer'
 
 function TagPage({currentUser, updateUserLikedArtworks}) {
   const {name} = useParams()
@@ -20,16 +21,16 @@ function TagPage({currentUser, updateUserLikedArtworks}) {
     <div>
       {
         tagObj
-        ?
-        <div>
-          <p className = "tag-header">"{name}" results:</p>
-            <ArtworkContainer
-            artworks = {tagObj.artworks}
-            currentUser = {currentUser}
-            updateUserLikedArtworks = {updateUserLikedArtworks}
-          />
-        </div>
-        : <p className = "tag-header">"{name}" has no artworks</p>
+          ?
+            <div>
+              <p className = "tag-header">"{name}" results:</p>
+                <ArtworkContainer
+                artworks = {tagObj.artworks}
+                currentUser = {currentUser}
+                updateUserLikedArtworks = {updateUserLikedArtworks}
+              />
+            </div>
+          : <p className = "tag-header">"{name}" has no artworks</p>
       }
     </div>
   )
