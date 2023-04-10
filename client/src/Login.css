@@ -1,0 +1,19 @@
+.errors-list {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.errors-list li {
+  padding-right: 1vw;
+  font-size: 1.1rem;
+  list-style:square;
+  color: red;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

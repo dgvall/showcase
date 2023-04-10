@@ -6,6 +6,7 @@ function SignUp({setUser, setSelectedUser}) {
   const [password, setPassword] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
   const [imageUrl, setImageUrl] = useState("")
+  const [errors, setErrors] = useState([])
 
   const history = useHistory()
 
@@ -26,16 +27,24 @@ function SignUp({setUser, setSelectedUser}) {
       },
       body: JSON.stringify(userData)
     })
-      .then(res => res.json())
-      .then(user => {
-        setUser(user)
+      .then(r => {
+        if (r.ok) {
+          r.json().then((user) => {
+            setUser(user)
         setSelectedUser(user)
         history.push("/artworks")
+          })
+        }
+        else {
+          r.json().then((error) => {
+            setErrors(error.errors)
+          })
+        }
       })
   }
 
   return (
-    <div>
+    <div className = "form-container">
       <h2 className = "form-header">Sign Up</h2>
       <form className = "form" onSubmit = {handleSubmit}>
         <input
@@ -68,6 +77,17 @@ function SignUp({setUser, setSelectedUser}) {
 
         <button className = "form-button">Create Account</button>
       </form>
+      <ul className = "errors-list">
+      {
+        errors.map((e, index) => {
+          return (
+            <li
+              key = {index}
+            >{e}</li>
+          )
+        })
+      }
+    </ul>
     </div>
   )
 }

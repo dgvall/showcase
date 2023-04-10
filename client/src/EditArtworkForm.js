@@ -9,6 +9,7 @@ function EditArtwork({currentUser, updateUserArtwork}) {
   const [tags, setTags] = useState([])
   const [canEdit, setCanEdit] = useState(false)
   const [selectedArtwork, setSelectedArtwork] = useState(null)
+  const [errors, setErrors] = useState([])
 
   const history = useHistory()
   const {username, id} = useParams()
@@ -53,6 +54,9 @@ function EditArtwork({currentUser, updateUserArtwork}) {
             updateUserArtwork(artwork)
             history.push(`/users/${username}/artworks/${id}`)
           })
+        }
+        else {
+          r.json().then((error) => setErrors(error.errors))
         }
       })
 
@@ -115,6 +119,18 @@ function EditArtwork({currentUser, updateUserArtwork}) {
     <div id = "button-container">
       <button onClick = {handleSubmit} className = "form-button">Edit</button>
     </div>
+
+    <ul className = "errors-list">
+      {
+        errors.map((e, index) => {
+          return (
+            <li
+              key = {index}
+            >{e}</li>
+          )
+        })
+      }
+    </ul>
     
   </div>
   )

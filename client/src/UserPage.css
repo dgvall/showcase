@@ -10,7 +10,7 @@
 .profile-info img {
   height: 9vh;
   width: 9vh;
-  border: solid black .2em;
+  border: solid #ccc .2em;
 }
 
 .profile-info h1 {

@@ -9,6 +9,7 @@ function UploadForm({addUserArtwork, currentUser}) {
   const [imageUrl, setImageUrl] = useState("")
   const [tag, setTag] = useState("")
   const [tags, setTags] = useState([])
+  const [errors, setErrors] = useState([])
 
   const history = useHistory()
 
@@ -28,11 +29,17 @@ function UploadForm({addUserArtwork, currentUser}) {
       },
       body: JSON.stringify(artworkData)
     })
-      .then(res => res.json())
-      .then(artwork => {
-        console.log(artwork)
-        addUserArtwork(artwork)
-        history.push(`/users/${artwork.user.username}/artworks/${artwork.id}`)
+      .then((r) => {
+        if(r.ok) {
+          r.json().then(artwork => {
+            console.log(artwork)
+            addUserArtwork(artwork)
+            history.push(`/users/${artwork.user.username}/artworks/${artwork.id}`)  
+          })
+        }
+        else {
+          r.json().then((error) => setErrors(error.errors))
+        }
       })
 
     console.log("Submitted!")
@@ -92,6 +99,18 @@ function UploadForm({addUserArtwork, currentUser}) {
     <div id = "button-container">
       <button onClick = {handleSubmit} className = "form-button">Upload</button>
     </div>
+
+    <ul className = "errors-list">
+      {
+        errors.map((e, index) => {
+          return (
+            <li
+              key = {index}
+            >{e}</li>
+          )
+        })
+      }
+    </ul>
     
   </div>
   

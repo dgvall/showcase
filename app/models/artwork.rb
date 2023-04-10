@@ -9,4 +9,5 @@ class Artwork < ApplicationRecord
 
   validates :title, presence: true
   validates :image_url, presence: true
+  validates :artwork_tags, presence: true
 end

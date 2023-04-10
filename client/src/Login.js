@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import {useHistory} from 'react-router-dom'
+import "./Login.css"
 
 function Login({setUser, setSelectedUser}) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const [errors, setErrors] = useState([])
 
   const history = useHistory()
 
@@ -31,13 +33,13 @@ function Login({setUser, setSelectedUser}) {
           })
         }
         else {
-          // append errors to error state which DOM shows
+          r.json().then((error) => setErrors(error.errors))
         }
       })
   }
 
   return (
-    <div>
+    <div className = "form-container">
     <h2 className = "form-header">Login</h2>
     <form className = "form" onSubmit = {handleSubmit}>
       <input
@@ -54,8 +56,18 @@ function Login({setUser, setSelectedUser}) {
         placeholder = "Password"
       />
       <button className = "form-button">Log In</button>
-      
     </form>
+    <ul className = "errors-list">
+      {
+        errors.map((e, index) => {
+          return (
+            <li
+              key = {index}
+            >{e}</li>
+          )
+        })
+      }
+    </ul>
   </div>
   )
 }
