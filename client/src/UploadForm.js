@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import {useHistory} from 'react-router-dom'
+import PreviewArtwork from './PreviewArtwork'
 
 import "./UploadForm.css"
 
-function UploadForm({addUserArtwork}) {
+function UploadForm({addUserArtwork, currentUser}) {
   const [title, setTitle] = useState("")
   const [imageUrl, setImageUrl] = useState("")
   const [tag, setTag] = useState("")
@@ -68,6 +69,15 @@ function UploadForm({addUserArtwork}) {
       value = {tag}
       placeholder = "Tag"
     />
+   <PreviewArtwork
+        id = {0}
+        image_url = {imageUrl}
+        likes = {0}
+        title = {title}
+        user = {currentUser}
+        likedByUser = {false}
+        preview = {true}
+    />
     </form>
 
     {
@@ -84,6 +94,7 @@ function UploadForm({addUserArtwork}) {
     </div>
     
   </div>
+  
   )
 }
 

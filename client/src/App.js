@@ -163,6 +163,7 @@ function App() {
 
         <Route exact path = "/upload">
           <UploadForm
+            currentUser = {user}
             addUserArtwork = {addUserArtwork}
           />
         </Route>

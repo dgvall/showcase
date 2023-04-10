@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {useHistory, useParams} from 'react-router-dom'
+import PreviewArtwork from './PreviewArtwork'
 
 function EditArtwork({currentUser, updateUserArtwork}) {
   const [title, setTitle] = useState("")
@@ -89,6 +90,15 @@ function EditArtwork({currentUser, updateUserArtwork}) {
         value = {tag}
         placeholder = "Tag"
       />
+      <PreviewArtwork
+        id = {0}
+        image_url = {imageUrl}
+        likes = {0}
+        title = {title}
+        user = {currentUser}
+        likedByUser = {false}
+        preview = {true}
+    />
     </form>
     <ul>
     {
