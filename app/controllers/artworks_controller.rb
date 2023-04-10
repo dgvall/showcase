@@ -23,7 +23,7 @@ class ArtworksController < ApplicationController
     artwork = Artwork.find(params[:id])
     artwork.update(title: params[:title], image_url: params[:image_url])
 
-    artwork.tags = params[:tags].downcase.map do |t|
+    artwork.tags = params[:tags].map do |t|
       Tag.find_or_create_by(name: t)
     end
 

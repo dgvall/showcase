@@ -122,6 +122,7 @@ function EditArtwork({currentUser, updateUserArtwork}) {
 
     <ul className = "errors-list">
       {
+        errors &&
         errors.map((e, index) => {
           return (
             <li
