@@ -5,7 +5,6 @@
   flex-direction: row;
   height: 10vh;
   width: 50vw;
-  border: solid red 5px;
 }
 
 .profile-info img {
@@ -21,9 +20,8 @@
   font-size: 4rem;
 }
 
-#user-art-container {
-  border: solid red 2px;
-}
+/* #user-art-container {
+} */
 
 .user-page-artwork {
   display: flex;

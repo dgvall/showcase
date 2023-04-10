@@ -60,6 +60,7 @@ function PreviewArtwork({id, image_url, tags, likes, title, user, likedByUser, u
           <div className = "hover-details">
             { user
             ?
+            <>
             <div>
             <h3
               onClick = {() => {
@@ -75,18 +76,31 @@ function PreviewArtwork({id, image_url, tags, likes, title, user, likedByUser, u
                 }
               }}
             >{user.username}</p> 
-          </div>
-          : null
-
+            </div>
+            {
+              likedByUser
+              ?
+              <p
+                className = "artwork-likes"
+                onClick = {handleLike}
+              >⭐ {updatedLikes}</p>
+              :
+              <p
+                className = "artwork-likes"
+                onClick = {handleLike}
+              >★ {updatedLikes}</p>
             }
-            <p
+          </>
+          : null
+            }
+            {/* <p
               onClick = {handleLike}
-            >⭐ {updatedLikes}</p>
-            <p>{
+            >⭐★ {updatedLikes}</p> */}
+              {/* {
                 likedByUser
-                ? "Unlike"
-                : "Like"
-              }</p>
+                ? <div></div>
+                : <div></div>>
+              }</p> */}
           </div>
       }
     </div>
