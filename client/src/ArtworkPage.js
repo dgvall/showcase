@@ -115,6 +115,7 @@ function ArtworkPage({currentUser, updateUserLikedArtworks, setSelectedUser, sel
             selectedArtwork.tags.map((t, index) => {
               return (
                 <li
+                  onClick = {() => history.push(`/tags/${t.name}`)}
                   key = {index}
                 >{t.name}</li>
               )
