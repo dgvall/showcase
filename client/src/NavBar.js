@@ -15,7 +15,10 @@ function NavBar({currentUser, handleLogout, handleSearch}) {
       >Showcase</NavLink>
       <form
       id = "search-bar"
-      onSubmit = {(e) => handleSearch(e, search)}
+      onSubmit = {(e) => {
+        handleSearch(e, search)
+        setSearch("")
+      }}
       >
       <input
         placeholder = "Search"
