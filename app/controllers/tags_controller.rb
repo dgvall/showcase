@@ -7,7 +7,7 @@ class TagsController < ApplicationController
   end
 
   def filtered
-    tags = Tag.find_by(name: params[:name])
+    tags = Tag.find_by(name: params[:name].downcase)
     render json: tags, include: ['artworks', 'artworks.user']
   end
 end

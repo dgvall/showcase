@@ -16,7 +16,7 @@ function NavBar({currentUser, handleLogout, handleSearch}) {
       <form
       id = "search-bar"
       onSubmit = {(e) => {
-        handleSearch(e, search)
+        handleSearch(e, search.toLowerCase())
         setSearch("")
       }}
       >

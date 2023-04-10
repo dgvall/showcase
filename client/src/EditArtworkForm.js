@@ -65,7 +65,7 @@ function EditArtwork({currentUser, updateUserArtwork}) {
 
   function handleTagSubmit(e) {
     e.preventDefault()
-    setTags(() => [...tags, tag])
+    setTags(() => [...tags, tag.toLowerCase()])
     setTag("")
   }
 

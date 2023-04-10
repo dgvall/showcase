@@ -47,7 +47,7 @@ function UploadForm({addUserArtwork, currentUser}) {
 
   function handleTagSubmit(e) {
     e.preventDefault()
-    setTags(() => [...tags, tag])
+    setTags(() => [...tags, tag.toLowerCase()])
     setTag("")
   }
 
@@ -86,16 +86,17 @@ function UploadForm({addUserArtwork, currentUser}) {
         preview = {true}
     />
     </form>
-
-    {
-      tags.map((t, index) => {
-        return (
-          <li
-            key = {index}
-          >{t}</li>
-        )
-      })
-    }
+    <ul>
+      {
+        tags.map((t, index) => {
+          return (
+            <li
+              key = {index}
+            >{t}</li>
+          )
+        })
+      }
+    </ul>
     <div id = "button-container">
       <button onClick = {handleSubmit} className = "form-button">Upload</button>
     </div>
