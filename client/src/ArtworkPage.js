@@ -3,6 +3,8 @@ import {useParams, useHistory} from 'react-router-dom'
 import PreviewArtwork from './PreviewArtwork'
 import ArtworkContainer from './ArtworkContainer'
 
+import "./ArtworkPage.css"
+
 function ArtworkPage({currentUser, updateUserLikedArtworks, setSelectedUser, selectedUser, deleteUserArtwork}) {
   // const [selectedUser, setSelectedUser] = useState(null)
   const [selectedArtwork, setSelectedArtwork] = useState(null)
@@ -86,42 +88,56 @@ function ArtworkPage({currentUser, updateUserLikedArtworks, setSelectedUser, sel
         selectedArtwork
         ?
         <>
-        <img
-          className = "full-artwork"
-          src = {selectedArtwork.image_url}
-          alt = {selectedArtwork.title}
-        />
-        {
-          canEdit
-          ?
+        <div className = "full-artwork-container">
           <div>
-            <button
-              onClick = {() => history.push(`/users/${selectedUser.username}/artworks/${selectedArtwork.id}/edit`)}
-            >Edit Artwork</button>
-            <button
-              onClick = {handleDeleteArtwork}
-            >Delete Artwork</button>
+            <img
+            className = "full-artwork"
+            src = {selectedArtwork.image_url}
+            alt = {selectedArtwork.title}
+          />
+            {
+              canEdit
+              ?
+              <div>
+                <button
+                  onClick = {() => history.push(`/users/${selectedUser.username}/artworks/${selectedArtwork.id}/edit`)}
+                >Edit Artwork</button>
+                <button
+                  onClick = {handleDeleteArtwork}
+                >Delete Artwork</button>
+              </div>
+              : null
+            }
           </div>
-          : null
-        }
-        <h1>{selectedArtwork.title}</h1>
-        <p
-          onClick = {() => history.push(`/users/${username}`)}
-        >{selectedUser.username}</p>
-        <p>{selectedArtwork.likes} Likes</p>
-        <p>Tags:</p>
-        <ul>
-          {
-            selectedArtwork.tags.map((t, index) => {
-              return (
-                <li
-                  onClick = {() => history.push(`/tags/${t.name}`)}
-                  key = {index}
-                >{t.name}</li>
-              )
-            })
-          }
-        </ul>
+          <div className = "full-artwork-details">
+            <div className = "full-artwork-header">
+              <h1>{selectedArtwork.title}</h1>
+              <h1 className = "hyphen">-</h1>
+              <h1
+                className = "full-artwork-username"
+                onClick = {() => history.push(`/users/${username}`)}
+              >{selectedUser.username}</h1>
+            </div>
+              <p>{selectedArtwork.likes} Likes</p>
+            <div>
+              <p>Tags:</p>
+              <ul>
+                {
+                  selectedArtwork.tags.map((t, index) => {
+                    return (
+                      <li
+                        className = "full-artwork-tags"
+                        onClick = {() => history.push(`/tags/${t.name}`)}
+                        key = {index}
+                      >{t.name}</li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+       
         <h1>More from {selectedUser.username}!</h1>
         <div className = "user-page-artwork">
               {

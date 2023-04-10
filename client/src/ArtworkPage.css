@@ -1,0 +1,40 @@
+.full-artwork {
+  height: 50vh;
+}
+
+.full-artwork-container {
+  padding-left: 5vw;
+  display: flex;
+  flex-direction: row;
+}
+
+.full-artwork-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.full-artwork-username {
+  font-weight: normal;
+}
+
+.hyphen {
+  font-weight: normal;
+  padding-left: .5vw;
+  padding-right: .5vw;
+}
+
+.full-artwork-details {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.full-artwork-likes {
+  padding: none;
+  margin: none;
+}
+
+.full-artwork-tags {
+  cursor: pointer;
+}
