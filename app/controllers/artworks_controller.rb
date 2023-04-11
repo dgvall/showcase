@@ -50,6 +50,4 @@ class ArtworksController < ApplicationController
   def artwork_params
     params.require(:artwork).permit(:title, :image_url, :tags)
   end
-
-
 end

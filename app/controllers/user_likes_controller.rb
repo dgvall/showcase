@@ -1,5 +1,4 @@
 class UserLikesController < ApplicationController
-  # skip_before_action :authorize, only: []
 
   def create
     artwork = Artwork.find(params[:artwork_id])
