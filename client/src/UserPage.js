@@ -45,7 +45,7 @@ function UserPage({ setSelectedUser, selectedUser, currentUser, updateUserLikedA
                 <h1>Gallery</h1>
                 <div className = "user-page-artwork">
                   {
-                    selectedUser
+                    selectedUser.artworks[0]
                       ?
                         <ArtworkContainer
                           artworks = {selectedUser.artworks}
